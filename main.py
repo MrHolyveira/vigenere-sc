@@ -1,10 +1,8 @@
-from typing import KeysView
 import wx
 from scgui import ScGuiMainFrame
 import string
 import numpy as np
 from itertools import cycle
-import time 
 
 #criação da matrix de Vigenere:
 a = []

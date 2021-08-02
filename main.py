@@ -1,3 +1,4 @@
+from numpy.core.fromnumeric import cumprod
 import wx
 from scgui import ScGuiMainFrame
 import string
@@ -5,53 +6,56 @@ import numpy as np
 from itertools import cycle
 
 #criação da matrix de Vigenere:
-a = []
-b = list(string.ascii_lowercase)
-alphabets = list(string.ascii_lowercase)
-start_index = 0
-length = len(alphabets)
+def createMatrix():
+    a = []
+    vigenereMatrix = list(string.ascii_lowercase)
+    alphabets = list(string.ascii_lowercase)
+    start_index = 0
+    length = len(alphabets)
 
-for i in range(length):
     for i in range(length):
-        element_index = start_index % length
-        a.append(alphabets[element_index]) 
+        for i in range(length):
+            element_index = start_index % length
+            a.append(alphabets[element_index]) 
+            start_index += 1
+        vigenereMatrix = np.vstack((vigenereMatrix,a))
+        a=[]
         start_index += 1
-    b = np.vstack((b,a))
-    a=[]
-    start_index += 1
-b = np.delete(b, 0,0)
-
+    vigenereMatrix = np.delete(vigenereMatrix, 0,0)
+    return vigenereMatrix
 #criação do dicionário do alfabeto para consulta.
-dicAplha = {}
-for i in list(string.ascii_lowercase):
-    number = ord(i) - 97
-    dicAplha[number] = i
-dicAplha2 ={}
-for i in list(string.ascii_lowercase):
-    number = ord(i) - 97
-    dicAplha2[i] = number
+def createDicAlpha():
+    dicAlpha ={}
+    for i in list(string.ascii_lowercase):
+        number = ord(i) - 97
+        dicAlpha[i] = number
+    return dicAlpha
+
+b = createMatrix()
+dicAlpha = createDicAlpha()
 
 
-#teste:
-plainText = 'ATTACK AT DAWN'
-key = cycle('LEMON'.lower())
-plainText = plainText.lower()
-keyStream = ''
-#Gerar o keyStream
-for char in plainText:
-    if char != ' ':
-        keyStream += next(key)
-keyStream = cycle(keyStream)
+def cipher(plainText,key):
     
-#cifrar
-cipherText = ''
-for char in plainText:
-    if char != ' ':
-        cipherText += b[dicAplha2[char]][dicAplha2[next(keyStream)]]
-    else:
-        cipherText += ' '
+    key = cycle(key.lower())
+    plainText = plainText.lower()
+    keyStream = ''
+    #Gerar o keyStream
+    for char in plainText:
+        if char != ' ':
+            keyStream += next(key)
+    keyStream = cycle(keyStream)
+        
+    #cifrar
+    cipherText = ''
+    for char in plainText:
+        if char != ' ':
+            cipherText += b[dicAlpha[char]][dicAlpha[next(keyStream)]]
+        else:
+            cipherText += ' '
+    return cipherText
+cipherText = cipher('ATTACK AT DAWN', 'LEMON' )
 print(cipherText)
-
 
 '''
 if __name__ == '__main__':

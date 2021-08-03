@@ -1,5 +1,5 @@
 import wx
-from scgui import ScGuiMainFrame
+import scgui
 import string
 import numpy as np
 from itertools import cycle
@@ -40,56 +40,58 @@ def createKeyStream(plainText, key):
             keyStream += next(key)
     return keyStream
 
-#Cifrador
-def cipher(plainText, key):
-    plainText = plainText.lower()
-    keyStream = createKeyStream(plainText, key)
-    keyStream = cycle(keyStream)
-    cipherText = ''
-    for char in plainText:
-        if char != ' ':
-            cipherText += b[dicAlpha[char]][dicAlpha[next(keyStream)]]
-        else:
-            cipherText += ' '
-    return cipherText
 
-#decifrador
-def decipher(cipherText, key):
-    decipherText = ''
-    keyStream = createKeyStream(cipherText, key)
-    lstSpaces = []
-    keyStream = list(keyStream)
 
-    for pos,char in enumerate(cipherText):
-        if(char == ' '):
-            lstSpaces.append(pos)
-    
-    for spaceIndex in lstSpaces:
-        keyStream.insert(spaceIndex, ' ')
-    keyStream = ''.join(keyStream)
-    
-    for char,i in zip(keyStream, cipherText):
-        if char != ' ':
-            decipherText += b[0][np.where(b[dicAlpha[char]] == i)[0][0]]
-        else:
-            decipherText += ' '
-        
-    return decipherText
+
+
 
 b = createMatrix()
 dicAlpha = createDicAlpha()
 plainText = 'ATTACK AT DAWN'
 key = 'LEMON'
 
-cipherText = cipher(plainText, key)
-decipherText = decipher( cipherText, key)
-print(cipherText)
-print(decipherText)
 
+
+class ScGuiMainFrame(  scgui.ScGuiMainFrame):
+    #Cifrador
+    def cipher(self, event):
+        plainText = self.txtPlainTextCi.GetValue().lower()
+        key = self.txtKeyCi.GetValue().lower()
+        keyStream = createKeyStream(plainText, key)
+        keyStream = cycle(keyStream)
+        cipherText = ''
+        for char in plainText:
+            if char != ' ':
+                cipherText += b[dicAlpha[char]][dicAlpha[next(keyStream)]]
+            else:
+                cipherText += ' '
+        self.txtCipherTextCi.SetValue(cipherText)
+    
+    #decifrador
+    def decipher(self, event):
+        decipherText = ''
+        cipherText = self.txtCipherTextDe.GetValue().lower()
+        key = self.txtKeyDe.GetValue().lower()
+        keyStream = createKeyStream(cipherText, key)
+        lstSpaces = []
+        keyStream = list(keyStream)
+
+        for pos,char in enumerate(cipherText):
+            if(char == ' '):
+                lstSpaces.append(pos)
+        
+        for spaceIndex in lstSpaces:
+            keyStream.insert(spaceIndex, ' ')
+        keyStream = ''.join(keyStream)
+        
+        for char,i in zip(keyStream, cipherText):
+            if char != ' ':
+                decipherText += b[0][np.where(b[dicAlpha[char]] == i)[0][0]]
+            else:
+                decipherText += ' '
+        self.txtDecipherTextDe.SetValue(decipherText)
 
 if __name__ == '__main__':
-    # When this module is run (not imported) then create the app, the
-    # frame, show it, and start the event loop.
     app = wx.App()
     frm = ScGuiMainFrame(None)
     frm.Show()

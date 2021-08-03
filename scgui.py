@@ -38,8 +38,10 @@ class ScGuiMainFrame ( wx.Frame ):
 		self.m_staticText2.Wrap( -1 )
 		bSizer11.Add( self.m_staticText2, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
 		
-		self.m_richText1 = wx.richtext.RichTextCtrl( self.m_panel1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0|wx.NO_BORDER )
-		bSizer11.Add( self.m_richText1, 1, wx.ALL|wx.EXPAND, 5 )
+		self.txtPlainTextCi = wx.richtext.RichTextCtrl( self.m_panel1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0|wx.NO_BORDER )
+		self.txtPlainTextCi.SetFont( wx.Font( 15, 70, 90, 90, False, wx.EmptyString ) )
+		
+		bSizer11.Add( self.txtPlainTextCi, 1, wx.ALL|wx.EXPAND, 5 )
 		
 		
 		bSizer8.Add( bSizer11, 1, wx.EXPAND, 5 )
@@ -50,14 +52,16 @@ class ScGuiMainFrame ( wx.Frame ):
 		self.m_staticText1.Wrap( -1 )
 		bSizer9.Add( self.m_staticText1, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
 		
-		self.m_textCtrl2 = wx.TextCtrl( self.m_panel1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 350,-1 ), 0 )
-		bSizer9.Add( self.m_textCtrl2, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
+		self.txtKeyCi = wx.TextCtrl( self.m_panel1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 350,-1 ), 0 )
+		self.txtKeyCi.SetFont( wx.Font( 15, 70, 90, 90, False, wx.EmptyString ) )
 		
-		self.btnEncode = wx.Button( self.m_panel1, wx.ID_ANY, u"Cifrar", wx.DefaultPosition, wx.Size( 350,200 ), wx.NO_BORDER )
-		self.btnEncode.SetForegroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_CAPTIONTEXT ) )
-		self.btnEncode.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_INFOBK ) )
+		bSizer9.Add( self.txtKeyCi, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
 		
-		bSizer9.Add( self.btnEncode, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
+		self.btnEncodeCi = wx.Button( self.m_panel1, wx.ID_ANY, u"Cifrar", wx.DefaultPosition, wx.Size( 350,200 ), wx.NO_BORDER )
+		self.btnEncodeCi.SetForegroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_CAPTIONTEXT ) )
+		self.btnEncodeCi.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_INFOBK ) )
+		
+		bSizer9.Add( self.btnEncodeCi, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
 		
 		
 		bSizer8.Add( bSizer9, 1, wx.ALIGN_BOTTOM, 5 )
@@ -68,8 +72,10 @@ class ScGuiMainFrame ( wx.Frame ):
 		self.m_staticText21.Wrap( -1 )
 		bSizer111.Add( self.m_staticText21, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
 		
-		self.m_richText12 = wx.richtext.RichTextCtrl( self.m_panel1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0|wx.NO_BORDER )
-		bSizer111.Add( self.m_richText12, 1, wx.ALL|wx.EXPAND, 5 )
+		self.txtCipherTextCi = wx.richtext.RichTextCtrl( self.m_panel1, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0|wx.NO_BORDER )
+		self.txtCipherTextCi.SetFont( wx.Font( 15, 70, 90, 90, False, wx.EmptyString ) )
+		
+		bSizer111.Add( self.txtCipherTextCi, 1, wx.ALL|wx.EXPAND, 5 )
 		
 		
 		bSizer8.Add( bSizer111, 1, wx.EXPAND, 5 )
@@ -81,9 +87,70 @@ class ScGuiMainFrame ( wx.Frame ):
 		self.m_panel1.SetSizer( bSizer4 )
 		self.m_panel1.Layout()
 		bSizer4.Fit( self.m_panel1 )
-		self.m_notebook5.AddPage( self.m_panel1, u"a page", True )
-		self.m_panel2 = wx.Panel( self.m_notebook5, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
-		self.m_notebook5.AddPage( self.m_panel2, u"a page", False )
+		self.m_notebook5.AddPage( self.m_panel1, u"Cifrar", False )
+		self.m_panel11 = wx.Panel( self.m_notebook5, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
+		self.m_panel11.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_3DLIGHT ) )
+		
+		bSizer41 = wx.BoxSizer( wx.VERTICAL )
+		
+		bSizer81 = wx.BoxSizer( wx.HORIZONTAL )
+		
+		bSizer112 = wx.BoxSizer( wx.VERTICAL )
+		
+		self.m_staticText22 = wx.StaticText( self.m_panel11, wx.ID_ANY, u"Texto para decifrar", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText22.Wrap( -1 )
+		bSizer112.Add( self.m_staticText22, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
+		
+		self.txtCipherTextDe = wx.richtext.RichTextCtrl( self.m_panel11, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0|wx.NO_BORDER )
+		self.txtCipherTextDe.SetFont( wx.Font( 15, 70, 90, 90, False, wx.EmptyString ) )
+		
+		bSizer112.Add( self.txtCipherTextDe, 1, wx.ALL|wx.EXPAND, 5 )
+		
+		
+		bSizer81.Add( bSizer112, 1, wx.EXPAND, 5 )
+		
+		bSizer91 = wx.BoxSizer( wx.VERTICAL )
+		
+		self.m_staticText11 = wx.StaticText( self.m_panel11, wx.ID_ANY, u"KEY:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText11.Wrap( -1 )
+		bSizer91.Add( self.m_staticText11, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
+		
+		self.txtKeyDe = wx.TextCtrl( self.m_panel11, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 350,-1 ), 0 )
+		self.txtKeyDe.SetFont( wx.Font( 15, 70, 90, 90, False, wx.EmptyString ) )
+		
+		bSizer91.Add( self.txtKeyDe, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
+		
+		self.btnDecodeDe = wx.Button( self.m_panel11, wx.ID_ANY, u"Decifrar", wx.DefaultPosition, wx.Size( 350,200 ), wx.NO_BORDER )
+		self.btnDecodeDe.SetForegroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_CAPTIONTEXT ) )
+		self.btnDecodeDe.SetBackgroundColour( wx.Colour( 130, 255, 170 ) )
+		
+		bSizer91.Add( self.btnDecodeDe, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
+		
+		
+		bSizer81.Add( bSizer91, 1, wx.ALIGN_BOTTOM, 5 )
+		
+		bSizer1111 = wx.BoxSizer( wx.VERTICAL )
+		
+		self.m_staticText211 = wx.StaticText( self.m_panel11, wx.ID_ANY, u"Texto decifrado", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText211.Wrap( -1 )
+		bSizer1111.Add( self.m_staticText211, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
+		
+		self.txtDecipherTextDe = wx.richtext.RichTextCtrl( self.m_panel11, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0|wx.NO_BORDER )
+		self.txtDecipherTextDe.SetFont( wx.Font( 15, 70, 90, 90, False, wx.EmptyString ) )
+		
+		bSizer1111.Add( self.txtDecipherTextDe, 1, wx.ALL|wx.EXPAND, 5 )
+		
+		
+		bSizer81.Add( bSizer1111, 1, wx.EXPAND, 5 )
+		
+		
+		bSizer41.Add( bSizer81, 1, wx.EXPAND, 5 )
+		
+		
+		self.m_panel11.SetSizer( bSizer41 )
+		self.m_panel11.Layout()
+		bSizer41.Fit( self.m_panel11 )
+		self.m_notebook5.AddPage( self.m_panel11, u"Decifrar", True )
 		self.m_panel3 = wx.Panel( self.m_notebook5, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
 		self.m_notebook5.AddPage( self.m_panel3, u"a page", False )
 		
@@ -96,14 +163,18 @@ class ScGuiMainFrame ( wx.Frame ):
 		self.Centre( wx.BOTH )
 		
 		# Connect Events
-		self.btnEncode.Bind( wx.EVT_BUTTON, self.teste )
+		self.btnEncodeCi.Bind( wx.EVT_BUTTON, self.cipher )
+		self.btnDecodeDe.Bind( wx.EVT_BUTTON, self.decipher )
 	
 	def __del__( self ):
 		pass
 	
 	
 	# Virtual event handlers, overide them in your derived class
-	def teste( self, event ):
+	def cipher( self, event ):
+		event.Skip()
+	
+	def decipher( self, event ):
 		event.Skip()
 	
 

@@ -40,18 +40,6 @@ def createKeyStream(plainText, key):
             keyStream += next(key)
     return keyStream
 
-
-
-
-
-
-b = createMatrix()
-dicAlpha = createDicAlpha()
-plainText = 'ATTACK AT DAWN'
-key = 'LEMON'
-
-
-
 class ScGuiMainFrame(  scgui.ScGuiMainFrame):
     #Cifrador
     def cipher(self, event):
@@ -62,7 +50,7 @@ class ScGuiMainFrame(  scgui.ScGuiMainFrame):
         cipherText = ''
         for char in plainText:
             if char != ' ':
-                cipherText += b[dicAlpha[char]][dicAlpha[next(keyStream)]]
+                cipherText += vigenereMatrix[dicAlpha[char]][dicAlpha[next(keyStream)]]
             else:
                 cipherText += ' '
         self.txtCipherTextCi.SetValue(cipherText)
@@ -86,12 +74,14 @@ class ScGuiMainFrame(  scgui.ScGuiMainFrame):
         
         for char,i in zip(keyStream, cipherText):
             if char != ' ':
-                decipherText += b[0][np.where(b[dicAlpha[char]] == i)[0][0]]
+                decipherText += vigenereMatrix[0][np.where(vigenereMatrix[dicAlpha[char]] == i)[0][0]]
             else:
                 decipherText += ' '
         self.txtDecipherTextDe.SetValue(decipherText)
 
 if __name__ == '__main__':
+    vigenereMatrix = createMatrix()
+    dicAlpha = createDicAlpha()
     app = wx.App()
     frm = ScGuiMainFrame(None)
     frm.Show()

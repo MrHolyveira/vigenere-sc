@@ -57,21 +57,19 @@ def cipher(plainText, key):
 def decipher(cipherText, key):
     decipherText = ''
     keyStream = createKeyStream(cipherText, key)
-    
     lstSpaces = []
+    keyStream = list(keyStream)
+
     for pos,char in enumerate(cipherText):
         if(char == ' '):
             lstSpaces.append(pos)
     
-    keyStream = list(keyStream)
     for spaceIndex in lstSpaces:
         keyStream.insert(spaceIndex, ' ')
     keyStream = ''.join(keyStream)
-    print(keyStream)
+    
     for char,i in zip(keyStream, cipherText):
-        
         if char != ' ':
-            #print(b[dicAlpha[char]])
             decipherText += b[0][np.where(b[dicAlpha[char]] == i)[0][0]]
         else:
             decipherText += ' '
@@ -84,16 +82,15 @@ plainText = 'ATTACK AT DAWN'
 key = 'LEMON'
 
 cipherText = cipher(plainText, key)
-print(cipherText)
-
 decipherText = decipher( cipherText, key)
-
+print(cipherText)
 print(decipherText)
-'''
+
+
 if __name__ == '__main__':
     # When this module is run (not imported) then create the app, the
     # frame, show it, and start the event loop.
     app = wx.App()
     frm = ScGuiMainFrame(None)
     frm.Show()
-    app.MainLoop()'''
+    app.MainLoop()

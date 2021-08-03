@@ -1,4 +1,3 @@
-from numpy.core.fromnumeric import cumprod
 import wx
 from scgui import ScGuiMainFrame
 import string
@@ -23,6 +22,7 @@ def createMatrix():
         start_index += 1
     vigenereMatrix = np.delete(vigenereMatrix, 0,0)
     return vigenereMatrix
+
 #criação do dicionário do alfabeto para consulta.
 def createDicAlpha():
     dicAlpha ={}
@@ -31,22 +31,20 @@ def createDicAlpha():
         dicAlpha[i] = number
     return dicAlpha
 
-b = createMatrix()
-dicAlpha = createDicAlpha()
-
-
-def cipher(plainText,key):
-    
+#Gerar o keyStream
+def createKeyStream(plainText, key):
     key = cycle(key.lower())
-    plainText = plainText.lower()
     keyStream = ''
-    #Gerar o keyStream
     for char in plainText:
         if char != ' ':
             keyStream += next(key)
+    return keyStream
+
+#Cifrador
+def cipher(plainText, key):
+    plainText = plainText.lower()
+    keyStream = createKeyStream(plainText, key)
     keyStream = cycle(keyStream)
-        
-    #cifrar
     cipherText = ''
     for char in plainText:
         if char != ' ':
@@ -54,9 +52,43 @@ def cipher(plainText,key):
         else:
             cipherText += ' '
     return cipherText
-cipherText = cipher('ATTACK AT DAWN', 'LEMON' )
+
+#decifrador
+def decipher(cipherText, key):
+    decipherText = ''
+    keyStream = createKeyStream(cipherText, key)
+    
+    lstSpaces = []
+    for pos,char in enumerate(cipherText):
+        if(char == ' '):
+            lstSpaces.append(pos)
+    
+    keyStream = list(keyStream)
+    for spaceIndex in lstSpaces:
+        keyStream.insert(spaceIndex, ' ')
+    keyStream = ''.join(keyStream)
+    print(keyStream)
+    for char,i in zip(keyStream, cipherText):
+        
+        if char != ' ':
+            #print(b[dicAlpha[char]])
+            decipherText += b[0][np.where(b[dicAlpha[char]] == i)[0][0]]
+        else:
+            decipherText += ' '
+        
+    return decipherText
+
+b = createMatrix()
+dicAlpha = createDicAlpha()
+plainText = 'ATTACK AT DAWN'
+key = 'LEMON'
+
+cipherText = cipher(plainText, key)
 print(cipherText)
 
+decipherText = decipher( cipherText, key)
+
+print(decipherText)
 '''
 if __name__ == '__main__':
     # When this module is run (not imported) then create the app, the

@@ -4,6 +4,7 @@ import string
 import numpy as np
 from itertools import cycle
 
+
 #criação da matrix de Vigenere:
 def createMatrix():
     a = []
@@ -40,7 +41,22 @@ def createKeyStream(plainText, key):
             keyStream += next(key)
     return keyStream
 
+#Faz o shift-left nos valores do gráfico
+def update_line(self):    
+    self.axs[0].clear()
+    x.append(x[0])
+    x.pop(0)
+    y.append(y[0])
+    y.pop(0)
+    print(x[0])
+    self.axs[0].bar(x,y)
+    plot.draw()
+
 class ScGuiMainFrame(  scgui.ScGuiMainFrame):
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.fig, self.axs = plot.subplots(2)
+
     #Cifrador
     def cipher(self, event):
         plainText = self.txtPlainTextCi.GetValue().lower()
@@ -78,6 +94,46 @@ class ScGuiMainFrame(  scgui.ScGuiMainFrame):
             else:
                 decipherText += ' '
         self.txtDecipherTextDe.SetValue(decipherText)
+    
+    def breakCipher(self, event):
+        #fig.suptitle('Vertically stacked subplots')
+        self.axs[0].bar(x,y)
+        self.axs[0].set_title('Frequência de letras no texto')
+        self.axs[1].bar(x1,y1)
+        #axs[1].set_title('Frequência de letras em portugês')
+        plot.show()
+        
+    def breakCipherClose(self, event):
+        plot.close()
+    
+    def breakCipherUpdate(self, event):
+        update_line(self)
+
+
+
+
+from collections import Counter
+
+import matplotlib.pyplot as plot
+
+
+freqPortuguese = {'a':	14.63,'b':	1.04,'c':	3.88,'d':	4.99,'e':	12.57,'f':	1.02,'g':	1.30,'h':	1.28,'i':	6.18,'j':	0.40,'k':	0.02,'l':	2.78,'m':	4.74
+,'n':	5.05,'o':	10.73,'p':	2.52,'q':	1.20,'r':	6.53,'s':	7.81,'t':	4.34,'u':	4.63,'v':	1.67,'w':	0.01,'x':	0.21,'y':	0.01,'z':	0.47}
+
+texto = 'A frequencia de letras em um texto tem sido frequentemente estudada para uso em criptografia e analise de frequencia em particular Nenhuma distribuicao de frequencia de letras exata e subjacente a uma determinada lingua uma vez que todos os escritores escrevem um pouco diferente As maquinas de linotipo classificaram as frequencias das letras como'.lower()
+counter = Counter(texto)
+del counter[' ']
+total = 0
+for key in counter.keys():
+    total += counter[key]
+
+for freq in counter.keys():
+    counter[freq] = counter[freq]*100/total
+x = sorted(counter.keys())
+y = list(counter.values())
+x1 = sorted(freqPortuguese.keys())
+y1 = freqPortuguese.values()
+
 
 if __name__ == '__main__':
     vigenereMatrix = createMatrix()
@@ -86,3 +142,4 @@ if __name__ == '__main__':
     frm = ScGuiMainFrame(None)
     frm.Show()
     app.MainLoop()
+  

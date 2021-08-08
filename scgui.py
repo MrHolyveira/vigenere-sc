@@ -150,9 +150,33 @@ class ScGuiMainFrame ( wx.Frame ):
 		self.m_panel11.SetSizer( bSizer41 )
 		self.m_panel11.Layout()
 		bSizer41.Fit( self.m_panel11 )
-		self.m_notebook5.AddPage( self.m_panel11, u"Decifrar", True )
-		self.m_panel3 = wx.Panel( self.m_notebook5, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
-		self.m_notebook5.AddPage( self.m_panel3, u"a page", False )
+		self.m_notebook5.AddPage( self.m_panel11, u"Decifrar", False )
+		self.m_panel111 = wx.Panel( self.m_notebook5, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
+		self.m_panel111.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_3DLIGHT ) )
+		
+		bSizer22 = wx.BoxSizer( wx.VERTICAL )
+		
+		self.txtCipherTextBr1 = wx.richtext.RichTextCtrl( self.m_panel111, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0|wx.NO_BORDER )
+		self.txtCipherTextBr1.SetFont( wx.Font( 15, 70, 90, 90, False, wx.EmptyString ) )
+		
+		bSizer22.Add( self.txtCipherTextBr1, 1, wx.EXPAND |wx.ALL, 5 )
+		
+		self.btnBreak = wx.Button( self.m_panel111, wx.ID_ANY, u"Open", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer22.Add( self.btnBreak, 0, wx.ALL, 5 )
+		
+		self.btnBreak1 = wx.Button( self.m_panel111, wx.ID_ANY, u"Close", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer22.Add( self.btnBreak1, 0, wx.ALL, 5 )
+		
+		self.btnBreak11 = wx.Button( self.m_panel111, wx.ID_ANY, u"Update", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer22.Add( self.btnBreak11, 0, wx.ALL, 5 )
+		
+		
+		self.m_panel111.SetSizer( bSizer22 )
+		self.m_panel111.Layout()
+		bSizer22.Fit( self.m_panel111 )
+		self.m_notebook5.AddPage( self.m_panel111, u"Quebrar", True )
+		self.m_panel7 = wx.Panel( self.m_notebook5, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
+		self.m_notebook5.AddPage( self.m_panel7, u"a page", False )
 		
 		bSizer1.Add( self.m_notebook5, 1, wx.EXPAND |wx.ALL, 5 )
 		
@@ -165,6 +189,9 @@ class ScGuiMainFrame ( wx.Frame ):
 		# Connect Events
 		self.btnEncodeCi.Bind( wx.EVT_BUTTON, self.cipher )
 		self.btnDecodeDe.Bind( wx.EVT_BUTTON, self.decipher )
+		self.btnBreak.Bind( wx.EVT_BUTTON, self.breakCipher )
+		self.btnBreak1.Bind( wx.EVT_BUTTON, self.breakCipherClose )
+		self.btnBreak11.Bind( wx.EVT_BUTTON, self.breakCipherUpdate )
 	
 	def __del__( self ):
 		pass
@@ -175,6 +202,15 @@ class ScGuiMainFrame ( wx.Frame ):
 		event.Skip()
 	
 	def decipher( self, event ):
+		event.Skip()
+	
+	def breakCipher( self, event ):
+		event.Skip()
+	
+	def breakCipherClose( self, event ):
+		event.Skip()
+	
+	def breakCipherUpdate( self, event ):
 		event.Skip()
 	
 

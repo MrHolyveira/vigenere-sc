@@ -1,4 +1,3 @@
-import enum
 from numpy.lib.function_base import diff
 import wx
 import scgui
@@ -169,8 +168,6 @@ class diagGuess(scgui.diagGuess):
             hideNkeys(self, True,20 )
 
         def plotFreq(self, event):
-            #self.keyIndex
-            #del counter[' ']
             #Lista todos os espaços em branco no texto
             lstSpaces = []
             for pos,char in enumerate(self.text):
@@ -195,13 +192,6 @@ class diagGuess(scgui.diagGuess):
             for spaceIndex in lstSpaces:
                 self.text.insert(spaceIndex, ' ')
             self.text = ''.join(self.text)
-                  
-            '''for char,i in zip(keyStream, cipherText):
-                if char != ' ':
-                    decipherText += vigenereMatrix[0][np.where(vigenereMatrix[dicAlpha[char]] == i)[0][0]]
-                else:
-                    decipherText += ' '
-            self.txtDecipherTextDe.SetValue(decipherText) '''
 
             for char in freqPortuguese.keys():
                 if char not in plotText.keys():
@@ -218,14 +208,15 @@ class diagGuess(scgui.diagGuess):
             x2 = freqEnglish.keys()
             y2 = freqEnglish.values()
 
-
             self.fig, self.axs = plot.subplots(3,sharey=True)
             self.axs[0].bar(x2,y2)
-            #fig.suptitle('Vertically stacked subplots')
+            self.fig.suptitle('Diagramas de frequência de letras.')
+            self.axs[0].set_title('Frequência de letras em inglês')
             self.axs[1].bar(self.x,self.y)
-            #self.axs[0].set_title('Frequência de letras no texto')
+            self.axs[1].set_title('Frequência de letras no texto')
             self.axs[2].bar(x1,y1)
-            #axs[1].set_title('Frequência de letras em portugês')
+            self.axs[2].set_title('Frequência de letras em portugês')
+            plot.subplots_adjust(hspace=0.5)
             plot.show()
 
             def selectKeySize (self,event):
@@ -239,15 +230,12 @@ class diagGuess(scgui.diagGuess):
         def selectKeyIndex(self, event):
             radio = event.GetEventObject()
             id = str(radio.GetId())
-            self.keyIndex = self.keyCharIndex[id]
-            #print( int(id[-2:]))
-            
+            self.keyIndex = self.keyCharIndex[id] 
         
         def shiftPlot(self, event):
             updateLine(self)
         
         def setCharKey(self, event):
-            print(self.x[0])
             for i in range(0,20):
                 attr = 'radCharKey'+str(i+1)
                 if getattr(self, attr).GetValue():
@@ -269,7 +257,7 @@ class ScGuiMainFrame(  scgui.ScGuiMainFrame):
         self.txtCipherTextBr1.SetValue('l jdsdfizqvl hq zrevmg rx yy hrixa hrx wurb qvqehprfszprfs rdxgrnoe boel yec rx gdwcessfnqmm s nyexwfp hq tepugsanmm sz aedhvnyxoe yizvhxe pwfevuphtgmc qp jdsdfizqvl hq zrevmg riefo r dynxnnizhr l yyo qpxqfztrmrn wmzuhl yyo ipd cir espcf zw qgpcmfcepw qgpcihsz fq bchns pwspvqbgp ee anbyubnd hq zvysfwcz gxofdmrwplvma nd jdsdfizqvlw pof wiffnd gaab')
     #Cifrador
     def cipher(self, event):
-        plainText = self.txtPlainTextCi.GetValue().lower()
+        plainText = self.txtPlainTextCi.GetValue().lower().strip()
         key = self.txtKeyCi.GetValue().lower()
         keyStream = createKeyStream(plainText, key)
         keyStream = cycle(keyStream)
@@ -284,7 +272,7 @@ class ScGuiMainFrame(  scgui.ScGuiMainFrame):
     #decifrador
     def decipher(self, event):
         decipherText = ''
-        cipherText = self.txtCipherTextDe.GetValue().lower()
+        cipherText = self.txtCipherTextDe.GetValue().lower().strip()
         key = self.txtKeyDe.GetValue().lower()
         keyStream = createKeyStream(cipherText, key)
         lstSpaces = []
@@ -360,4 +348,3 @@ if __name__ == '__main__':
     frm = ScGuiMainFrame(None)
     frm.Show()
     app.MainLoop()
-  

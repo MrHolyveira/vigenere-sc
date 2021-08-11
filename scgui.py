@@ -91,7 +91,7 @@ class ScGuiMainFrame ( wx.Frame ):
 		self.m_panel1.SetSizer( bSizer4 )
 		self.m_panel1.Layout()
 		bSizer4.Fit( self.m_panel1 )
-		self.m_notebook5.AddPage( self.m_panel1, u"Cifrar", False )
+		self.m_notebook5.AddPage( self.m_panel1, u"Cifrar", True )
 		self.m_panel11 = wx.Panel( self.m_notebook5, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
 		self.m_panel11.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_3DLIGHT ) )
 
@@ -254,7 +254,7 @@ class ScGuiMainFrame ( wx.Frame ):
 		self.m_panel111.SetSizer( bSizer22 )
 		self.m_panel111.Layout()
 		bSizer22.Fit( self.m_panel111 )
-		self.m_notebook5.AddPage( self.m_panel111, u"Quebrar", True )
+		self.m_notebook5.AddPage( self.m_panel111, u"Quebrar", False )
 
 		bSizer1.Add( self.m_notebook5, 1, wx.EXPAND |wx.ALL, 5 )
 

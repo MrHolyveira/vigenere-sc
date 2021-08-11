@@ -134,6 +134,7 @@ def popGrid(self, dicWordsOccurrences):
         for i in countDiv:
             self.txtMostFreq.AppendText('Tamanho: '+str(i[0])+" | Frequência: "+ str(i[1])+'\n') 	
 
+#Esconde os caracteres de chaves que não estão sendo usados no GUI
 def hideNkeys(self, hide,n):
     if hide:
         for i in range(0,n):
@@ -148,6 +149,7 @@ def hideNkeys(self, hide,n):
             attr2 = 'txtCharKey'+str(i+1)
             getattr(self, attr2).Show()
 
+#Define os IDs dos objetos de seleção de caracteres de chave para consulta posterior
 def setIdRadios(self):
     for i in range(0,20):
         attr = 'radCharKey'+str(i+1)
@@ -167,6 +169,7 @@ class diagGuess(scgui.diagGuess):
             setIdRadios(self)
             hideNkeys(self, True,20 )
 
+        #Plota os gráficos de freqência
         def plotFreq(self, event):
             #Lista todos os espaços em branco no texto
             lstSpaces = []
@@ -181,6 +184,7 @@ class diagGuess(scgui.diagGuess):
                 plotText += self.text[i]
             plotText = Counter(plotText)
             
+            #calcula a porcentagem para caracter do texto
             total = 0
             for key in plotText.keys():
                 total += plotText[key]
@@ -193,10 +197,11 @@ class diagGuess(scgui.diagGuess):
                 self.text.insert(spaceIndex, ' ')
             self.text = ''.join(self.text)
 
+            #Define o valor 0 para os caracteres que não existirem no texto
             for char in freqPortuguese.keys():
                 if char not in plotText.keys():
                     plotText[char] = 0
-            
+            #Plota os gráficos em ordem alfabetica
             items = plotText.items()
             sorted1 = sorted(items)
             plotText = dict(sorted1)
@@ -219,9 +224,7 @@ class diagGuess(scgui.diagGuess):
             plot.subplots_adjust(hspace=0.5)
             plot.show()
 
-            def selectKeySize (self,event):
-                event.GetEventObject().GetLabel()
-        
+
         def selectKeySize(self, event):
             self.keySize = int(event.GetEventObject().GetLabel())
             hideNkeys(self, True, 20)
@@ -251,6 +254,7 @@ class diagGuess(scgui.diagGuess):
             
             self.guessedKey = ''.join(key)
             self.Destroy()
+            
 class ScGuiMainFrame(  scgui.ScGuiMainFrame):
     def __init__(self, parent):
         super().__init__(parent)

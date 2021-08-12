@@ -1,0 +1,59 @@
+\documentclass{article}
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\graphicspath{ {./Figuras/} }
+
+\title{Descritivo do trabalho de Segurança Computacional 2021.1}
+\author{Mateus Luis Oliveira}
+\date{Agosto 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{Introdução}
+A cifra de Vigenère é um exemplo de cifra polialfabética, que é uma cifra baseada 
+na substituição, usando vários alfabetos de substituição. Nestre trabalho iremos tratar da implementação de um cifrador/decifrador/quebrador 
+de cifra de Vigenère.
+
+
+
+\section{Implementação}
+
+\subsection{Arquitetura do Projeto}
+Para definir a forma que o projeto foi estruturado decidi tomar como base uma interface de usuário criada pelo RAD tool (Rapid-application development) 
+\href{https://github.com/wxFormBuilder/wxFormBuilder}{wxFormBuilder}, que gera uma inteface de usuário usando como base os objetos de inteface
+\href{https://www.wxpython.org/}{wxPython}. Um arquivo de interface é gerado dentro da ferramenta contendo todas as classes de telas (frames) e 
+outros objetos que compoem a interação com usuário, como botões e caixas de texto, conforme descrito na figura \ref{fig:wxform}.
+
+\begin{figure}[h]
+  \includegraphics[scale=0.1]{wxform}
+  \centering
+  \caption{Projeto criado no wxFormBuilder.}
+  \label{fig:wxform}
+\end{figure}
+O arquivo gerado pelo wxFormBuilder usado como base no projeto é o aqruivo ../scgui.py, que é importado dentro do arquivo principal do projeto
+para que seus componentem sejam consumidos pelo arquivo principal ../main.py.
+
+\subsection{Desenvolvimento}
+
+
+Dentro da implementação do projeto foi usado como base uma estrutura de dado
+Criada de acordo com o código descrito na figura \ref{fig:matriz_code}.
+
+\begin{figure}[h]
+    \includegraphics[scale=0.5]{Matrix_code}
+    \centering
+    \caption{Implementação da matriz de Vigenère.}
+    \label{fig:matriz_code}
+  \end{figure}
+
+A estrutura consiste em uma lista de listas que contém todas as 26 letras do alfabeto. Onde cada lista varia apenas a letra de início.
+Usando essa matriz a cifração e decifração se torna mais simples, pois conseguimos acessar a letra cifrada ou decifrada com índices.
+
+\subsubsection{Cifração}
+\subsubsection{teste2}
+
+\end{document}

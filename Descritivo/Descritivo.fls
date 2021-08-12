@@ -474,6 +474,14 @@ INPUT Figuras\\wxform.jpg
 INPUT .\Figuras\\Matrix_code.jpg
 INPUT Figuras\\Matrix_code.jpg
 OUTPUT Descritivo.xdv
+INPUT .\Figuras\\dicAlfabeto.jpg
+INPUT Figuras\\dicAlfabeto.jpg
+INPUT .\Figuras\\cifrador.jpg
+INPUT Figuras\\cifrador.jpg
+INPUT .\Figuras\\decifrador.jpg
+INPUT Figuras\\decifrador.jpg
+INPUT .\Figuras\\exemplo.jpg
+INPUT Figuras\\exemplo.jpg
 INPUT Descritivo.aux
 INPUT .\Descritivo.out
 INPUT .\Descritivo.out

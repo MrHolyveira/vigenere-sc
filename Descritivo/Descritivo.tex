@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[10pt]{article}
 \usepackage[portuguese]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
@@ -6,7 +6,7 @@
 \graphicspath{ {./Figuras/} }
 
 \title{Descritivo do trabalho de Segurança Computacional 2021.1}
-\author{Mateus Luis Oliveira}
+\author{Mateus Luis Oliveira - 180112490}
 \date{Agosto 2021}
 
 \begin{document}
@@ -34,14 +34,14 @@ outros objetos que compoem a interação com usuário, como botões e caixas de 
   \caption{Projeto criado no wxFormBuilder.}
   \label{fig:wxform}
 \end{figure}
-O arquivo gerado pelo wxFormBuilder usado como base no projeto é o aqruivo ../scgui.py, que é importado dentro do arquivo principal do projeto
-para que seus componentem sejam consumidos pelo arquivo principal ../main.py.
+O arquivo gerado pelo wxFormBuilder usado como base no projeto é o aqruivo ../scgui.py, que é importado dentro do arquivo principal do projeto,
+../main.py, para que seus componentem sejam consumidos.
 
 \subsection{Desenvolvimento}
 
 
-Dentro da implementação do projeto foi usado como base uma estrutura de dado
-Criada de acordo com o código descrito na figura \ref{fig:matriz_code}.
+Dentro da implementação do projeto foi usado como base uma estrutura de dados
+criada de acordo com o código descrito na figura \ref{fig:matriz_code}.
 
 \begin{figure}[h]
     \includegraphics[scale=0.5]{Matrix_code}
@@ -51,9 +51,66 @@ Criada de acordo com o código descrito na figura \ref{fig:matriz_code}.
   \end{figure}
 
 A estrutura consiste em uma lista de listas que contém todas as 26 letras do alfabeto. Onde cada lista varia apenas a letra de início.
-Usando essa matriz a cifração e decifração se torna mais simples, pois conseguimos acessar a letra cifrada ou decifrada com índices.
+Usando essa matriz a cifração e decifração se torna mais simples, pois conseguimos acessar a letra cifrada ou decifrada com índices.\\
+Também foi criado uma estrutura mais básica para consulta do índice de acordo com a posição da letra do alfabeto, como demonstrado na figura 
+\ref{fig:alfabeto_code} .
 
+\begin{figure}[h]
+  \includegraphics[scale=0.5]{dicAlfabeto}
+  \centering
+  \caption{Implementação de um dicionário contendo as letras do alfabeto.}
+  \label{fig:alfabeto_code}
+\end{figure}
+
+\newpage
 \subsubsection{Cifração}
-\subsubsection{teste2}
+A cifração foi implementada de acordo com o descrito no código da figura \ref{fig:cifrador}.
+Onde podemos observar o uso da indexação da matriz criada na figura \ref{fig:matriz_code} em vermelho, usando como base o dicionário
+do alfabeto criado na figura \ref{fig:alfabeto_code} em azul.
+
+
+\begin{figure}[h]
+  \includegraphics[scale=0.4]{cifrador}
+  \centering
+  \caption{Implementação do cifrador Vigenère.}
+  \label{fig:cifrador}
+\end{figure}
+Também podemos observar nos pontos marcados em rosa na figura \ref{fig:cifrador} o uso de um keystream que é criado de acordo com a função
+createKeyStream, que usa como base o texto original não cifrado de tamanho N para criar um texto de repetição de key também de tamanho N.
+\subsubsection{Decifração}
+Para a decifração foi implementado um algoritmo que gera também um keystream baseado na key que o usuário passa e usa as mesmas estruturas
+descritas na figura \ref{fig:cifrador} para fazer o processo de tradução/cifração. O código pode ser conferido na figura \ref{fig:decifrador}.
+
+\begin{figure}[h]
+  \includegraphics[scale=0.4]{decifrador}
+  \centering
+  \caption{Implementação do decifrador Vigenère.}
+  \label{fig:decifrador}
+\end{figure}
+
+\subsubsection{Quebra da cifra por análise de frequências}
+
+Para conseguirmos decifrar um texto não sabendo sua chave temos que dividir a quebra em algumas etapas.
+O primeiro passo é inferir o tamanho da chave através do seguinte método:
+Listamos todas as sequências de 3 caracteres que se repetem pelo menos 2 vezes no texto e traçamos todas as distâncias desses 
+seqências entre elas
+
+
+Dado uma chave K que é usada para cifrar um texto, tendo conhecimento do tamanho da chave, podemos inferir que 
+para cada caracter de K as frequências relativas do texto se mantêm, por conta das propiedades do keystream,
+fazendo uma troca do índice do alfabeto. Como explicitado no exemplo da figura \ref{fig:ex}:
+
+\begin{figure}[h]
+  \includegraphics[scale=0.2]{exemplo}
+  \centering
+  \caption{Exemplo de uma implementação do keystream usando uma chave KEY.}
+  \label{fig:ex}
+\end{figure}
+
+Usando como base esta key de tamanho 3, podemos calcular a distribuição de freqência iterando a enésima letra do texto cifrado de acordo com
+keystream. Então calcularemos a distribuição de todas as frequências que tem como base o caracter 'k' da keystream, depois calculamos para 'E', 
+e em seguida calculamos para 'y'.\\
+Por último analisamos as frequências e trocando os índices conseguimos inferir a letra correta do keystream.
+Todo o processo de quebra está explicado detalhadamento neste vídeo que pode ser acessado através deste \href{https://youtu.be/NIzf1nHWtfs}{link}.
 
 \end{document}

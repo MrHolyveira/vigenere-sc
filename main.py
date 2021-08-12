@@ -184,7 +184,7 @@ class diagGuess(scgui.diagGuess):
                 plotText += self.text[i]
             plotText = Counter(plotText)
             
-            #calcula a porcentagem para caracter do texto
+            #calcula a porcentagem para cada caracter do texto
             total = 0
             for key in plotText.keys():
                 total += plotText[key]
@@ -223,7 +223,6 @@ class diagGuess(scgui.diagGuess):
             self.axs[2].set_title('Frequência de letras em portugês')
             plot.subplots_adjust(hspace=0.5)
             plot.show()
-
 
         def selectKeySize(self, event):
             self.keySize = int(event.GetEventObject().GetLabel())

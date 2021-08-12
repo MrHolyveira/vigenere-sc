@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (MiKTeX 21.6) (preloaded format=xelatex 2021.7.23)  12 AUG 2021 14:32
+This is XeTeX, Version 3.141592653-2.6-0.999993 (MiKTeX 21.6) (preloaded format=xelatex 2021.7.23)  12 AUG 2021 18:38
 entering extended mode
 **"d:/BKP/UnB/2021.1/SC/Projeto SC/Descritivo/Descritivo.tex"
 (d:/BKP/UnB/2021.1/SC/Projeto SC/Descritivo/Descritivo.tex
@@ -238,17 +238,28 @@ File: ./Figuras//Matrix_code.jpg Graphic file (type bmp)
 <./Figuras//Matrix_code.jpg>
  [1
 
-] [2] (Descritivo.aux)
+]
+File: ./Figuras//dicAlfabeto.jpg Graphic file (type bmp)
+<./Figuras//dicAlfabeto.jpg>
+ [2]
+File: ./Figuras//cifrador.jpg Graphic file (type bmp)
+<./Figuras//cifrador.jpg>
+File: ./Figuras//decifrador.jpg Graphic file (type bmp)
+<./Figuras//decifrador.jpg>
+ [3]
+File: ./Figuras//exemplo.jpg Graphic file (type bmp)
+<./Figuras//exemplo.jpg>
+ [4] (Descritivo.aux)
 Package rerunfilecheck Info: File `Descritivo.out' has not changed.
-(rerunfilecheck)             Checksum: 1D3E9A24A8021BA8E67E0144E43E863E;728.
+(rerunfilecheck)             Checksum: B6C9428417718480AA0E2386DA90F88E;1055.
  ) 
 Here is how much of TeX's memory you used:
- 8485 strings out of 411271
- 124838 string characters out of 2833087
- 466441 words of memory out of 3000000
- 28842 multiletter control sequences out of 15000+600000
+ 8583 strings out of 411271
+ 126921 string characters out of 2833087
+ 467175 words of memory out of 3000000
+ 28938 multiletter control sequences out of 15000+600000
  406582 words of font info for 44 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 60i,6n,66p,272b,359s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,6n,66p,396b,359s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Descritivo.xdv (2 pages, 19932 bytes).
+Output written on Descritivo.xdv (4 pages, 45308 bytes).

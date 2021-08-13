@@ -194,21 +194,20 @@ class diagGuess(scgui.diagGuess):
 
         #Plota os gráficos de freqência
         def plotFreq(self, event):
-            #Lista todos os espaços em branco ou números no texto
-            lstSpaces = []
-            self.text = handleText(self.text)
-            for pos,char in enumerate(self.text):
-                if(char == ' ' or char.isnumeric()):
-                    lstSpaces.append(pos)
+            #Mantém apenas as letras do texto
+            rawText = []
+            for char in self.text:
+                if(char in list(string.ascii_lowercase)):
+                    rawText.append(char)
+            rawText = ''.join(rawText)
             
-            #retira todos os espaços em branco no texto
-            self.text = self.text.replace(' ','')
+            #Separa do texto a contagem de caracter de acordo com o tamanho da chave
             plotText = ''
-            for i in range(self.keyIndex,len(self.text), +self.keySize):
-                if not self.text[i].isnumeric():
-                    plotText += self.text[i]
+            for i in range(self.keyIndex,len(rawText), +self.keySize):
+                if not rawText[i].isnumeric():
+                    plotText += rawText[i]
             plotText = Counter(plotText)
-            
+
             #calcula a porcentagem para cada caracter do texto
             total = 0
             for key in plotText.keys():
@@ -217,17 +216,12 @@ class diagGuess(scgui.diagGuess):
             for freq in plotText.keys():
                 if freq in list(string.ascii_lowercase):
                     plotText[freq] = plotText[freq]*100/total
-
-            #Coloca os espaços ou números de volta no texto
-            self.text = list(self.text)
-            for spaceIndex in lstSpaces:
-                self.text.insert(spaceIndex, ' ')
-            self.text = ''.join(self.text)
-
+            
             #Define o valor 0 para os caracteres que não existirem no texto
             for char in freqPortuguese.keys():
                 if char not in plotText.keys():
                     plotText[char] = 0
+            
             #Plota os gráficos em ordem alfabetica
             items = plotText.items()
             sorted1 = sorted(items)

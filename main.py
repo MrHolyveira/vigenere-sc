@@ -8,6 +8,18 @@ from collections import Counter
 import matplotlib.pyplot as plot
 import re
 from itertools import combinations
+from unidecode import unidecode 
+
+#Trata o texto para cifração ou decifração
+def handleText(text):
+    cleanText = []
+    text = unidecode(text.strip().lower())
+    for char in text:
+        if char in string.ascii_lowercase or char == ' ' or char.isnumeric():
+            cleanText += char
+
+    cleanText = ''.join(cleanText)
+    return cleanText
 
 #criação da matrix de Vigenere:
 def createMatrix():
@@ -171,27 +183,31 @@ class diagGuess(scgui.diagGuess):
 
         #Plota os gráficos de freqência
         def plotFreq(self, event):
-            #Lista todos os espaços em branco no texto
+            #Lista todos os espaços em branco ou números no texto
             lstSpaces = []
+            self.text = handleText(self.text)
             for pos,char in enumerate(self.text):
-                if(char == ' '):
+                if(char == ' ' or char.isnumeric()):
                     lstSpaces.append(pos)
             
             #retira todos os espaços em branco no texto
             self.text = self.text.replace(' ','')
             plotText = ''
             for i in range(self.keyIndex,len(self.text), +self.keySize):
-                plotText += self.text[i]
+                if not self.text[i].isnumeric():
+                    plotText += self.text[i]
             plotText = Counter(plotText)
             
             #calcula a porcentagem para cada caracter do texto
             total = 0
             for key in plotText.keys():
-                total += plotText[key]
+                if key in list(string.ascii_lowercase):
+                    total += plotText[key]
             for freq in plotText.keys():
-                plotText[freq] = plotText[freq]*100/total
+                if freq in list(string.ascii_lowercase):
+                    plotText[freq] = plotText[freq]*100/total
 
-            #Coloca os espaços de volta no texto
+            #Coloca os espaços ou números de volta no texto
             self.text = list(self.text)
             for spaceIndex in lstSpaces:
                 self.text.insert(spaceIndex, ' ')
@@ -260,40 +276,45 @@ class ScGuiMainFrame(  scgui.ScGuiMainFrame):
         self.txtCipherTextBr1.SetValue('l jdsdfizqvl hq zrevmg rx yy hrixa hrx wurb qvqehprfszprfs rdxgrnoe boel yec rx gdwcessfnqmm s nyexwfp hq tepugsanmm sz aedhvnyxoe yizvhxe pwfevuphtgmc qp jdsdfizqvl hq zrevmg riefo r dynxnnizhr l yyo qpxqfztrmrn wmzuhl yyo ipd cir espcf zw qgpcmfcepw qgpcihsz fq bchns pwspvqbgp ee anbyubnd hq zvysfwcz gxofdmrwplvma nd jdsdfizqvlw pof wiffnd gaab')
     #Cifrador
     def cipher(self, event):
-        plainText = self.txtPlainTextCi.GetValue().lower().strip()
-        key = self.txtKeyCi.GetValue().lower()
+        plainText = handleText(self.txtPlainTextCi.GetValue())
+        key = self.txtKeyCi.GetValue().lower().strip()
         keyStream = createKeyStream(plainText, key)
         keyStream = cycle(keyStream)
         cipherText = ''
         for char in plainText:
-            if char != ' ':
-                cipherText += vigenereMatrix[dicAlpha[char]][dicAlpha[next(keyStream)]]
-            else:
+            if char == ' ':
                 cipherText += ' '
+            elif char.isnumeric():
+                cipherText += char
+            else:
+                cipherText += vigenereMatrix[dicAlpha[char]][dicAlpha[next(keyStream)]]
+                
         self.txtCipherTextCi.SetValue(cipherText)
     
     #decifrador
     def decipher(self, event):
         decipherText = ''
-        cipherText = self.txtCipherTextDe.GetValue().lower().strip()
-        key = self.txtKeyDe.GetValue().lower()
+        cipherText = handleText(self.txtCipherTextDe.GetValue())
+        key = self.txtKeyDe.GetValue().lower().strip()
         keyStream = createKeyStream(cipherText, key)
         lstSpaces = []
         keyStream = list(keyStream)
 
         #Lista todos os espaços em branco no ciperText
         for pos,char in enumerate(cipherText):
-            if(char == ' '):
+            if(char == ' ' or char.isnumeric()):
                 lstSpaces.append(pos)
         #Aplica todos os espaços em branco do ciperText no keyStream
         for spaceIndex in lstSpaces:
             keyStream.insert(spaceIndex, ' ')
         keyStream = ''.join(keyStream)
         
-        for char,i in zip(keyStream, cipherText):
-            if char != ' ':
-                decipherText += vigenereMatrix[0][np.where(vigenereMatrix[dicAlpha[char]] == i)[0][0]]
-            else:
+        for charKeyStream,i in zip(keyStream, cipherText):
+            if charKeyStream != ' ':
+                decipherText += vigenereMatrix[0][np.where(vigenereMatrix[dicAlpha[charKeyStream]] == i)[0][0]]
+            elif i.isnumeric():
+                decipherText += i
+            else:                
                 decipherText += ' '
         self.txtDecipherTextDe.SetValue(decipherText)
     

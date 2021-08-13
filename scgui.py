@@ -617,11 +617,19 @@ class diagGuess ( wx.Dialog ):
 		self.btnPlot = wx.Button( self, wx.ID_ANY, u"Open", wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizer83.Add( self.btnPlot, 0, wx.ALIGN_CENTER_HORIZONTAL|wx.SHAPED, 5 )
 
-		self.btnShiftPlot = wx.Button( self, wx.ID_ANY, u"Shift", wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer83.Add( self.btnShiftPlot, 0, wx.ALL, 5 )
+		bSizer43 = wx.BoxSizer( wx.HORIZONTAL )
+
+		self.btnShiftPlotLeft = wx.Button( self, wx.ID_ANY, u"Shift Left", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer43.Add( self.btnShiftPlotLeft, 0, wx.ALL, 5 )
+
+		self.btnShiftPlotRight = wx.Button( self, wx.ID_ANY, u"Shift Right", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer43.Add( self.btnShiftPlotRight, 0, wx.ALL, 5 )
+
+
+		bSizer83.Add( bSizer43, 1, wx.EXPAND, 5 )
 
 		self.btnSet = wx.Button( self, wx.ID_ANY, u"Set", wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer83.Add( self.btnSet, 0, wx.ALL, 5 )
+		bSizer83.Add( self.btnSet, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
 
 
 		bSizer16.Add( bSizer83, 1, wx.ALIGN_CENTER|wx.ALIGN_CENTER_HORIZONTAL, 5 )
@@ -679,7 +687,8 @@ class diagGuess ( wx.Dialog ):
 		self.radCharKey19.Bind( wx.EVT_RADIOBUTTON, self.selectKeyIndex )
 		self.radCharKey20.Bind( wx.EVT_RADIOBUTTON, self.selectKeyIndex )
 		self.btnPlot.Bind( wx.EVT_BUTTON, self.plotFreq )
-		self.btnShiftPlot.Bind( wx.EVT_BUTTON, self.shiftPlot )
+		self.btnShiftPlotLeft.Bind( wx.EVT_BUTTON, self.shiftPlotLeft )
+		self.btnShiftPlotRight.Bind( wx.EVT_BUTTON, self.shiftPlotRight )
 		self.btnSet.Bind( wx.EVT_BUTTON, self.setCharKey )
 		self.btnOkDiag.Bind( wx.EVT_BUTTON, self.getGuessedKey )
 
@@ -734,7 +743,10 @@ class diagGuess ( wx.Dialog ):
 	def plotFreq( self, event ):
 		event.Skip()
 
-	def shiftPlot( self, event ):
+	def shiftPlotLeft( self, event ):
+		event.Skip()
+
+	def shiftPlotRight( self, event ):
 		event.Skip()
 
 	def setCharKey( self, event ):

@@ -58,12 +58,22 @@ def createKeyStream(plainText, key):
     return keyStream
 
 #Faz o shift-left nos valores do gráfico
-def updateLine(self):    
+def shiftPlotLeft(self):    
     self.axs[1].clear()
     self.x.append(self.x[0])
     self.x.pop(0)
     self.y.append(self.y[0])
     self.y.pop(0)
+    self.axs[1].bar(self.x,self.y)
+    plot.draw()
+
+#Faz o shift-Right nos valores do gráfico
+def shiftPlotRight(self):
+    self.axs[1].clear()
+    self.x.insert(0,self.x[-1])
+    self.x.pop(-1)
+    self.y.insert(0,self.y[-1])
+    self.y.pop(-1)
     self.axs[1].bar(self.x,self.y)
     plot.draw()
 
@@ -250,9 +260,12 @@ class diagGuess(scgui.diagGuess):
             id = str(radio.GetId())
             self.keyIndex = self.keyCharIndex[id] 
         
-        def shiftPlot(self, event):
-            updateLine(self)
-        
+        def shiftPlotLeft(self, event):
+            shiftPlotLeft(self)
+
+        def shiftPlotRight(self, event):
+            shiftPlotRight(self)
+            
         def setCharKey(self, event):
             for i in range(0,20):
                 attr = 'radCharKey'+str(i+1)

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (MiKTeX 21.6) (preloaded format=xelatex 2021.7.23)  12 AUG 2021 18:38
+This is XeTeX, Version 3.141592653-2.6-0.999993 (MiKTeX 21.6) (preloaded format=xelatex 2021.7.23)  12 AUG 2021 22:49
 entering extended mode
 **"d:/BKP/UnB/2021.1/SC/Projeto SC/Descritivo/Descritivo.tex"
 (d:/BKP/UnB/2021.1/SC/Projeto SC/Descritivo/Descritivo.tex
@@ -246,10 +246,16 @@ File: ./Figuras//cifrador.jpg Graphic file (type bmp)
 <./Figuras//cifrador.jpg>
 File: ./Figuras//decifrador.jpg Graphic file (type bmp)
 <./Figuras//decifrador.jpg>
- [3]
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 File: ./Figuras//exemplo.jpg Graphic file (type bmp)
 <./Figuras//exemplo.jpg>
- [4] (Descritivo.aux)
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[3] [4] (Descritivo.aux)
 Package rerunfilecheck Info: File `Descritivo.out' has not changed.
 (rerunfilecheck)             Checksum: B6C9428417718480AA0E2386DA90F88E;1055.
  ) 
@@ -262,4 +268,4 @@ Here is how much of TeX's memory you used:
  1348 hyphenation exceptions out of 8191
  60i,6n,66p,396b,359s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Descritivo.xdv (4 pages, 45308 bytes).
+Output written on Descritivo.xdv (4 pages, 45324 bytes).

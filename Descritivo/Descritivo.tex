@@ -1,4 +1,5 @@
 \documentclass[10pt]{article}
+\usepackage{float}
 \usepackage[portuguese]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
@@ -26,7 +27,7 @@ de cifra de Vigenère.
 Para definir a forma que o projeto foi estruturado decidi tomar como base uma interface de usuário criada pelo RAD tool (Rapid-application development) 
 \href{https://github.com/wxFormBuilder/wxFormBuilder}{wxFormBuilder}, que gera uma inteface de usuário usando como base os objetos de inteface
 \href{https://www.wxpython.org/}{wxPython}. Um arquivo de interface é gerado dentro da ferramenta contendo todas as classes de telas (frames) e 
-outros objetos que compoem a interação com usuário, como botões e caixas de texto, conforme descrito na figura \ref{fig:wxform}.
+outros objetos que compõem a interação com usuário, como botões e caixas de texto, conforme descrito na figura \ref{fig:wxform}.
 
 \begin{figure}[h]
   \includegraphics[scale=0.1]{wxform}
@@ -34,8 +35,8 @@ outros objetos que compoem a interação com usuário, como botões e caixas de 
   \caption{Projeto criado no wxFormBuilder.}
   \label{fig:wxform}
 \end{figure}
-O arquivo gerado pelo wxFormBuilder usado como base no projeto é o aqruivo ../scgui.py, que é importado dentro do arquivo principal do projeto,
-../main.py, para que seus componentem sejam consumidos.
+O arquivo gerado pelo wxFormBuilder usado como base no projeto é o arquivo ../scgui.py, que é importado dentro do arquivo principal do projeto,
+../main.py, para que seus componentes sejam consumidos.
 
 \subsection{Desenvolvimento}
 
@@ -81,8 +82,8 @@ createKeyStream, que usa como base o texto original não cifrado de tamanho N pa
 Para a decifração foi implementado um algoritmo que gera também um keystream baseado na key que o usuário passa e usa as mesmas estruturas
 descritas na figura \ref{fig:cifrador} para fazer o processo de tradução/cifração. O código pode ser conferido na figura \ref{fig:decifrador}.
 
-\begin{figure}[h]
-  \includegraphics[scale=0.4]{decifrador}
+\begin{figure}[H]
+  \includegraphics[scale=0.3]{decifrador}
   \centering
   \caption{Implementação do decifrador Vigenère.}
   \label{fig:decifrador}
@@ -93,7 +94,8 @@ descritas na figura \ref{fig:cifrador} para fazer o processo de tradução/cifra
 Para conseguirmos decifrar um texto não sabendo sua chave temos que dividir a quebra em algumas etapas.
 O primeiro passo é inferir o tamanho da chave através do seguinte método:
 Listamos todas as sequências de 3 caracteres que se repetem pelo menos 2 vezes no texto e traçamos todas as distâncias desses 
-seqências entre elas
+seqências entre elas e se calcula sua divisibilidade das distâncias para chaves de 2 a 20 caracteres.
+O tamanho com mais repetição de ocorrências costuma ser o tamanho da chave.
 
 
 Dado uma chave K que é usada para cifrar um texto, tendo conhecimento do tamanho da chave, podemos inferir que 
@@ -112,5 +114,12 @@ keystream. Então calcularemos a distribuição de todas as frequências que tem
 e em seguida calculamos para 'y'.\\
 Por último analisamos as frequências e trocando os índices conseguimos inferir a letra correta do keystream.
 Todo o processo de quebra está explicado detalhadamento neste vídeo que pode ser acessado através deste \href{https://youtu.be/NIzf1nHWtfs}{link}.
-
+A figura \ref{fig:tela} contém a sequência a ser seguida dentro da interface de usuário para que se consiga chegar no objetivo de 
+quebra da cifra.
+\begin{figure}[h]
+  \includegraphics[scale=0.3]{break}
+  \centering
+  \caption{Passos a serem seguidos para o uso do software.}
+  \label{fig:tela}
+\end{figure}
 \end{document}

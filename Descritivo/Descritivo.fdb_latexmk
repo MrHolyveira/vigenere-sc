@@ -1,9 +1,9 @@
 # Fdb version 3
-["xdvipdfmx"] 1628819368 "Descritivo.xdv" "Descritivo.pdf" "Descritivo" 1628819369
-  "Descritivo.xdv" 1628819367 45324 8e30c66f737fc6e2bec5571eaae3a50a "xelatex"
+["xdvipdfmx"] 1628872473 "Descritivo.xdv" "Descritivo.pdf" "Descritivo" 1628872473
+  "Descritivo.xdv" 1628872472 49216 dbcbb03e5a0f6f6429cc17ae0a708fa6 "xelatex"
   (generated)
   "Descritivo.pdf"
-["xelatex"] 1628819360 "d:/BKP/UnB/2021.1/SC/Projeto SC/Descritivo/Descritivo.tex" "Descritivo.xdv" "Descritivo" 1628819369
+["xelatex"] 1628872466 "d:/BKP/UnB/2021.1/SC/Projeto SC/Descritivo/Descritivo.tex" "Descritivo.xdv" "Descritivo" 1628872473
   "C:/Program Files/MiKTeX/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136783054 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/cm/cmmi12.tfm" 1136765053 1524 4414a8315f39513458b80dfc63bff03a ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/cm/cmmi6.tfm" 1136765053 1512 f21f83efb36853c0b70002322c1ab3ad ""
@@ -43,6 +43,7 @@
   "C:/Program Files/MiKTeX/tex/latex/base/inputenc.sty" 1622623408 5049 969aec05d5f39c43f8005910498fcf90 ""
   "C:/Program Files/MiKTeX/tex/latex/base/size10.clo" 1622623408 8448 05e1c6a8fc5db344ed9d7aeb299acbce ""
   "C:/Program Files/MiKTeX/tex/latex/base/ts1cmr.fd" 1622623408 2430 06a89bcded389391906798ea7a3f3aaa ""
+  "C:/Program Files/MiKTeX/tex/latex/float/float.sty" 1469023953 6916 f35860e0302c70cb81cb70b0a7937693 ""
   "C:/Program Files/MiKTeX/tex/latex/graphics-cfg/graphics.cfg" 1465894292 1224 978390e9c2234eab29404bc21b268d1e ""
   "C:/Program Files/MiKTeX/tex/latex/graphics-def/xetex.def" 1622562294 15263 06bfc49e20bdfcb827e011063ecb4ae6 ""
   "C:/Program Files/MiKTeX/tex/latex/graphics/graphics.sty" 1623003325 18399 7e40f80366dffb22c0e7b70517db5cb4 ""
@@ -63,17 +64,18 @@
   "C:/Program Files/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1575571282 9715 b051d5b493d9fe5f4bc251462d039e5f ""
   "C:/Program Files/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/Mateus/AppData/Local/MiKTeX/miktex/data/le/xetex/xelatex.fmt" 1627043096 23115156 60b425a10793866e9ea855f8863953d8 ""
-  "Descritivo.aux" 1628819367 3140 72db6fd11e8b7fcdcd96733754e73df8 "xelatex"
-  "Descritivo.out" 1628819367 1055 b6c9428417718480aa0e2386da90f88e "xelatex"
+  "Descritivo.aux" 1628872472 3386 37804760cf652fd71f236f51b44d93c9 "xelatex"
+  "Descritivo.out" 1628872472 1055 b6c9428417718480aa0e2386da90f88e "xelatex"
   "Figuras//Matrix_code.jpg" 1628787359 47715 bd39c2f0a149a0bb04da92dd74cd827f ""
+  "Figuras//break.jpg" 1628794228 294939 91f71a59f7237466f8e7c5f2c9ab38e0 ""
   "Figuras//cifrador.jpg" 1628819090 50714 29083c162b6af0b355fd6853465b563e ""
   "Figuras//decifrador.jpg" 1628819348 80826 7c40766c8a9ed674f2e35bb3c0875c82 ""
   "Figuras//dicAlfabeto.jpg" 1628790456 21681 362d150f179975cb71bdfdbb89e5cf39 ""
   "Figuras//exemplo.jpg" 1628800625 43683 056e292134908ac9970ffb66d7956988 ""
   "Figuras//wxform.jpg" 1628788514 362809 fb5bac88584097cfad7b3cf588900227 ""
-  "d:/BKP/UnB/2021.1/SC/Projeto SC/Descritivo/Descritivo.tex" 1628804310 5486 3b99d1ffbf2503ac09b08aeaa3a35c77 ""
+  "d:/BKP/UnB/2021.1/SC/Projeto SC/Descritivo/Descritivo.tex" 1628872466 5986 98696c874ce4ad3a5579e50514b25084 ""
   (generated)
-  "Descritivo.out"
-  "Descritivo.log"
   "Descritivo.aux"
+  "Descritivo.log"
+  "Descritivo.out"
   "Descritivo.xdv"

@@ -83,7 +83,7 @@ def popGrid(self, dicWordsOccurrences):
         countDiv = {}
         for i in range(1,21):
             countDiv[i] = 0
-
+        self.gridFrequences.ClearGrid()
         for i, word in enumerate(dicWordsOccurrences.values()):
             for j in word:
                 self.gridFrequences.SetCellValue(gridRow,1,str(j))
@@ -153,6 +153,7 @@ def popGrid(self, dicWordsOccurrences):
                 self.gridFrequences.SetCellValue(gridRow,0,word)
                 gridRow += 1
         countDiv = sorted(countDiv.items(), key=lambda x: x[1], reverse=True)  
+        self.txtMostFreq.Clear()
         for i in countDiv:
             self.txtMostFreq.AppendText('Tamanho: '+str(i[0])+" | Frequência: "+ str(i[1])+'\n') 	
 
@@ -182,7 +183,7 @@ def setIdRadios(self):
 class diagGuess(scgui.diagGuess):
         def __init__(self, parent):
             super().__init__(parent)
-            self.text = parent.txtCipherTextBr1.GetValue().lower()
+            self.text = handleText(parent.txtCipherTextBr1.GetValue().lower())
             self.keyCharIndex = {
                 '3000': 0,'3001': 1,'3002': 2,'3003': 3,'3004': 4,'3005': 5,'3006': 6,'3007': 7,
                 '3008': 8,'3009': 9,'3010': 10,'3011': 11,'3012': 12,'3013': 13,'3014': 14,'3015': 15,
@@ -332,7 +333,7 @@ class ScGuiMainFrame(  scgui.ScGuiMainFrame):
         self.txtDecipherTextDe.SetValue(decipherText)
     
     def generateKeySize(self, event):
-        cipherText = self.txtCipherTextBr1.GetValue().lower()
+        cipherText = handleText(self.txtCipherTextBr1.GetValue().lower())
         lstSpaces = []
         cipherText = list(cipherText)
         #Retira os espaços do cipherText
